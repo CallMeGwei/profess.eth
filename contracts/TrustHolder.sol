@@ -5,16 +5,21 @@ import "./Ownable.sol";
 
 contract TrustHolder is TrustHolderI, Ownable {
 
+    /**
+    * @notice Structure for holding a trust record.
+    * @param value numeric representation of trust level.  0 means not recognized. 255 means same as self. 1 - 100 are for trust scale values. Other values mean full trust *plus.
+    * @param delegatedTo if not the zero address, then trust will be delegated to this address if trust record value is zero.
+    */
     struct Trust {
-        uint8 value; // 0 means not recognized. 255 means same as self. 1 - 100 are for trust scale values. Other values mean full trust *plus.
-        address delegatedTo; // if not the zero address, then trust will be delegated to this address if trust value is zero.
+        uint8 value;
+        address delegatedTo;
     }
 
     mapping(address => mapping(address => Trust)) internal _trustRecords;
     mapping(address => address) internal _defaultDelegations;
 
-    uint public maxLookupDepth; // can be changed by owner.
-    uint public minLookupDepth; // can never be reduced.
+    uint public maxLookupDepth; /// can be changed by owner.
+    uint public minLookupDepth; /// can never be reduced.
 
     constructor(uint initialMinLookupDepth, uint initialMaxLookupDepth) public {
         setMinLookupDepth(initialMinLookupDepth);
