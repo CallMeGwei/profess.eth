@@ -119,63 +119,63 @@ contract("TrustHolder", function(accounts){
 
                 it("should not be possible for owner to adjust minLookups down", async () => {
 
-                    let currentNumMinLookups = await aTrustHolder.minLookups();
+                    let currentNumMinLookups = await aTrustHolder.minLookupDepth();
 
                     await truffleAssert.reverts(
-                        aTrustHolder.setMinNumLookups(currentNumMinLookups.sub(toBN(1)), { from: owner })
+                        aTrustHolder.setMinLookupDepth(currentNumMinLookups.sub(toBN(1)), { from: owner })
                     );
 
                 });
 
                 it("should be possible for owner to adjust minLookups up", async () => {
 
-                    let currentNumMinLookups = await aTrustHolder.minLookups();
+                    let currentNumMinLookups = await aTrustHolder.minLookupDepth();
 
-                    await aTrustHolder.setMinNumLookups(currentNumMinLookups.add(toBN(1)), { from: owner });
+                    await aTrustHolder.setMinLookupDepth(currentNumMinLookups.add(toBN(1)), { from: owner });
 
                 });
 
                 it("should be possible for owner to adjust maxLookups down", async () => {
 
-                    let currentNumMaxLookups = await aTrustHolder.maxLookups();
+                    let currentNumMaxLookups = await aTrustHolder.maxLookupDepth();
 
-                    await aTrustHolder.setMaxNumLookups(currentNumMaxLookups.sub(toBN(1)), { from: owner });
+                    await aTrustHolder.setMaxLookupDepth(currentNumMaxLookups.sub(toBN(1)), { from: owner });
 
                 });
 
                 it("should be possible for owner to adjust maxLookups up", async () => {
 
-                    let currentNumMaxLookups = await aTrustHolder.maxLookups();
+                    let currentNumMaxLookups = await aTrustHolder.maxLookupDepth();
 
-                    await aTrustHolder.setMaxNumLookups(currentNumMaxLookups.add(toBN(1)), { from: owner });
+                    await aTrustHolder.setMaxLookupDepth(currentNumMaxLookups.add(toBN(1)), { from: owner });
 
                 });
 
                 it("should not be possible for owner to adjust maxLookups down to less than minLookups", async () => {
 
-                    let currentNumMaxLookups = await aTrustHolder.maxLookups();
+                    let currentNumMaxLookups = await aTrustHolder.maxLookupDepth();
 
                     await truffleAssert.reverts(
-                        aTrustHolder.setMinNumLookups(currentNumMaxLookups.sub(currentNumMaxLookups), { from: owner })
+                        aTrustHolder.setMinLookupDepth(currentNumMaxLookups.sub(currentNumMaxLookups), { from: owner })
                     );
 
                 });
 
                 it("should not be possible for anyone aside from owner to adjust maxLookups or minLookups", async () => {
 
-                    let currentNumMinLookups = await aTrustHolder.minLookups();
-                    let currentNumMaxLookups = await aTrustHolder.maxLookups();
+                    let currentNumMinLookups = await aTrustHolder.minLookupDepth();
+                    let currentNumMaxLookups = await aTrustHolder.maxLookupDepth();
 
                     await truffleAssert.reverts(
-                        aTrustHolder.setMaxNumLookups(currentNumMaxLookups.add(toBN(1)), { from: entityAnybody })
+                        aTrustHolder.setMaxLookupDepth(currentNumMaxLookups.add(toBN(1)), { from: entityAnybody })
                     );
 
                     await truffleAssert.reverts(
-                        aTrustHolder.setMaxNumLookups(currentNumMaxLookups.sub(toBN(1)), { from: entityAnybody })
+                        aTrustHolder.setMaxLookupDepth(currentNumMaxLookups.sub(toBN(1)), { from: entityAnybody })
                     );
 
                     await truffleAssert.reverts(
-                        aTrustHolder.setMaxNumLookups(currentNumMinLookups.add(toBN(1)), { from: entityAnybody })
+                        aTrustHolder.setMaxLookupDepth(currentNumMinLookups.add(toBN(1)), { from: entityAnybody })
                     );
 
                 });
