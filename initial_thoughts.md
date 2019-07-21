@@ -52,7 +52,7 @@ This mechanism is to allow web2 users to benefit from blockchain credentials via
 
 Not everyone would be comfortable with the idea of their credential information being publicly visible on a blockchain. Of course this could be opt-in at the issuer level, but having some mechanism to preserve privacy by default may make sense here.
 
-At the time a credential is pinned or claimed, it would be converted into a clear-text copy of the credential. In the interim it could be protected by some secret, (which would need to be derived, in part, at least, from credential specific information) to prevent fraudulent claims.
+At the time a credential is pinned or claimed, it would be converted into a clear-text copy of the credential. In the interim it could be protected by some secret, (which would need to be derived, in part, at least, from credential specific information) to prevent illigitimate claims.
 
 ### The Abilities of Claimants
 
